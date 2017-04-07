@@ -1,0 +1,9 @@
+{% for conditioner in conditioners %}
+    <div>
+        <h3>{{ conditioner.title }}</h3>
+        <p>Brand: {{ conditioner.brand }}</p>
+        <p>Type: {{ conditioner.type }}</p>
+        <p>Block type: {{ conditioner.block_type }}</p>
+        <p>Inverter: {{ conditioner.inverter }}</p>
+    </div>
+{% endfor %}
