@@ -1,3 +1,44 @@
+<h2>Filters</h2>
+<form method="get">
+    <h3>Brands</h3>
+    {% for brand in brands %}
+        <label for="brand_{{ brand.id }}">
+            <input type="checkbox" name="brand" id="brand_{{ brand.id }}" value="{{ brand.id }}"
+                        {% if request.GET.brand == brand.id|stringformat:"i" %}checked="checked"{% endif %}>
+            {{ brand.title }}
+        </label>
+    {% endfor %}
+    <a href="/catalogue">All Conditioners</a>
+
+    <h3>Types</h3>
+    {% for type in types %}
+        <label for="type_{{ type.id }}">
+            <input type="checkbox" name="type" id="type_{{ type.id }}" value="{{ type.id }}"
+                        {% if request.GET.type == type.id|stringformat:"i" %}checked="true"{% endif %}>
+            {{ type.title }}
+        </label>
+    {% endfor %}
+
+    <h3>Block Types</h3>
+    {% for block_type in block_types %}
+        <label for="block_type_{{ block_type.id }}">
+            <input type="checkbox" name="block_type" id="block_type_{{ block_type.id }}"
+                   value="{{ block_type.id }}" {% if request.GET.block_type == block_type.id|stringformat:"i" %}checked="true"{% endif %}>
+            {{ block_type.title }}
+        </label>
+    {% endfor %}
+
+    <h3>Inverter</h3>
+    <label for="inverter">
+        <input type="checkbox" name="inverter" id="inverter" value="1"
+               {% if request.GET.inverter == '1' %}checked="checked"{% endif %}>
+        Inverter?
+    </label>
+
+<button type="submit">Search</button>
+</form>
+
+<h2>List of Conditioners</h2>
 {% for conditioner in conditioners %}
     <div>
         <h3>{{ conditioner.title }}</h3>
