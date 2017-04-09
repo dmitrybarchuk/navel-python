@@ -6,8 +6,9 @@ from django.db import models
 
 class Conditioner(models.Model):
     title = models.CharField(max_length=255, verbose_name=u'Название модели')
+    slug = models.SlugField(max_length=255, db_index=True, blank=True, unique=True)
     inverter = models.BooleanField(default=False, verbose_name=u'Инвертор')
-    brand = models.ForeignKey('Brand', related_name='conditioner', verbose_name=u'Бренд')
+    brand = models.ForeignKey('Brand', related_name='conditioner', verbose_name=u'Бренд', to_field='title')
     type = models.ForeignKey('Type', related_name='conditioner', verbose_name=u'Тип')
     block_type = models.ForeignKey('BlockType', related_name='conditioner', verbose_name=u'Тип внутреннего блока')
     date_added = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата добавления')
@@ -21,7 +22,7 @@ class Conditioner(models.Model):
 
 
 class Brand(models.Model):
-    title = models.CharField(max_length=100, verbose_name=u'Название')
+    title = models.CharField(max_length=100, verbose_name=u'Название', unique=True)
     description = models.TextField(verbose_name=u'Описание', blank=True)
 
     class Meta:

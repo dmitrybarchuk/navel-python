@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.db.models import Q
 from django.shortcuts import render
 from models import Conditioner, Brand, Type, BlockType
 
@@ -11,7 +12,9 @@ def index(request):
     types = Type.objects.all()
     block_types = BlockType.objects.all()
     if request.GET.get('brand'):
-        conditioners = conditioners.filter(brand=request.GET.get('brand'))
+        queries = [Q(brand=value) for value in request.GET.getlist('brand')]
+        for query in queries:
+            conditioners = conditioners.filter(query)
     if request.GET.get('type'):
         conditioners = conditioners.filter(type=request.GET.get('type'))
     if request.GET.get('block_type'):

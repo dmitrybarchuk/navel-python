@@ -8,6 +8,7 @@ from .models import Conditioner, Brand, Type, BlockType
 
 class AdminConditioner(admin.ModelAdmin):
     list_display = ('title', 'brand', 'type', 'block_type', 'date_added')
+    prepopulated_fields = {'slug': ('brand', 'title', )}
     search_fields = ('title', 'brand', 'type', 'block_type',)
     list_filter = ('brand', 'type', 'block_type',)
 

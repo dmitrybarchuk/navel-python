@@ -1,50 +1,74 @@
-<h2>Filters</h2>
-<form method="get">
-    <h3>Brands</h3>
-    {% for brand in brands %}
-        <label for="brand_{{ brand.id }}">
-            <input type="checkbox" name="brand" id="brand_{{ brand.id }}" value="{{ brand.id }}"
-                        {% if request.GET.brand == brand.id|stringformat:"i" %}checked="checked"{% endif %}>
-            {{ brand.title }}
-        </label>
-    {% endfor %}
-    <a href="/catalogue">All Conditioners</a>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.min.css" />
+<div class="uk-container">
+    <div uk-grid>
 
-    <h3>Types</h3>
-    {% for type in types %}
-        <label for="type_{{ type.id }}">
-            <input type="checkbox" name="type" id="type_{{ type.id }}" value="{{ type.id }}"
-                        {% if request.GET.type == type.id|stringformat:"i" %}checked="true"{% endif %}>
-            {{ type.title }}
-        </label>
-    {% endfor %}
+        <div class="uk-width-1-4">
 
-    <h3>Block Types</h3>
-    {% for block_type in block_types %}
-        <label for="block_type_{{ block_type.id }}">
-            <input type="checkbox" name="block_type" id="block_type_{{ block_type.id }}"
-                   value="{{ block_type.id }}" {% if request.GET.block_type == block_type.id|stringformat:"i" %}checked="true"{% endif %}>
-            {{ block_type.title }}
-        </label>
-    {% endfor %}
+            <h2>Filters</h2>
+            <form method="get" class="uk-form-stacked">
+                <h3>Brands</h3>
+                <div class="uk-form-controls">
+                    {% for brand in brands %}
+                        <label><input type="checkbox" name="brand" value="{{ brand }}"
+                                      {% if request.GET['brand'] == brand %}checked="checked"{% endif %} class="uk-checkbox">
+                            {{ brand }}</label><br>
+                    {% endfor %}
+                    <a href="/catalogue">All Conditioners</a>
+                </div>
 
-    <h3>Inverter</h3>
-    <label for="inverter">
-        <input type="checkbox" name="inverter" id="inverter" value="1"
-               {% if request.GET.inverter == '1' %}checked="checked"{% endif %}>
-        Inverter?
-    </label>
 
-<button type="submit">Search</button>
-</form>
+                <h3>Types</h3>
+                <div class="uk-form-controls">
+                    {% for type in types %}
+                        <label>
+                            <input type="checkbox" name="type" value="{{ type.id }}" class="uk-checkbox"
+                                   {% if request.GET.type == type.id|stringformat:"i" %}checked="true"{% endif %}>
+                            {{ type.title }}
+                        </label>
+                    {% endfor %}
+                </div>
 
-<h2>List of Conditioners</h2>
-{% for conditioner in conditioners %}
-    <div>
-        <h3>{{ conditioner.title }}</h3>
-        <p>Brand: {{ conditioner.brand }}</p>
-        <p>Type: {{ conditioner.type }}</p>
-        <p>Block type: {{ conditioner.block_type }}</p>
-        <p>Inverter: {{ conditioner.inverter }}</p>
+                <h3>Block Types</h3>
+                <div class="uk-form-controls">
+                    {% for block_type in block_types %}
+                        <label>
+                            <input type="checkbox" name="block_type" class="uk-checkbox"
+                                   value="{{ block_type.id }}" {% if request.GET.block_type == block_type.id|stringformat:"i" %}checked="true"{% endif %}>
+                            {{ block_type.title }}
+                        </label>
+                    {% endfor %}
+                </div>
+
+                <h3>Inverter</h3>
+                <div class="uk-form-controls">
+                    <label>
+                        <input type="checkbox" name="inverter" value="1" class="uk-checkbox"
+                               {% if request.GET.inverter == '1' %}checked="checked"{% endif %}>
+                        Inverter?
+                    </label>
+                </div>
+
+                <button class="uk-button uk-button-default" type="submit"><span uk-icon="icon: search"></span> Search</button>
+            </form>
+        </div>
+        <div class="uk-width-3-4">
+
+            <h2>List of Conditioners</h2>
+            <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+                {% for conditioner in conditioners %}
+                    <div>
+                        <h3>{{ conditioner.title }}</h3>
+                        <p>Brand: {{ conditioner.brand }}</p>
+                        <p>Type: {{ conditioner.type }}</p>
+                        <p>Block type: {{ conditioner.block_type }}</p>
+                        <p>Inverter: {{ conditioner.inverter }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-{% endfor %}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/js/uikit-icons.min.js"></script>
