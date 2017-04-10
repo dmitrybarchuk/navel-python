@@ -6,48 +6,7 @@
 
             <h2>Filters</h2>
             <form method="get" class="uk-form-stacked">
-                <h3>Brands</h3>
-                <div class="uk-form-controls">
-                    {% for brand in brands %}
-                        <label><input type="checkbox" name="brand" value="{{ brand }}"
-                                      {% if request.GET['brand'] == brand %}checked="checked"{% endif %} class="uk-checkbox">
-                            {{ brand }}</label><br>
-                    {% endfor %}
-                    <a href="/catalogue">All Conditioners</a>
-                </div>
-
-
-                <h3>Types</h3>
-                <div class="uk-form-controls">
-                    {% for type in types %}
-                        <label>
-                            <input type="checkbox" name="type" value="{{ type.id }}" class="uk-checkbox"
-                                   {% if request.GET.type == type.id|stringformat:"i" %}checked="true"{% endif %}>
-                            {{ type.title }}
-                        </label>
-                    {% endfor %}
-                </div>
-
-                <h3>Block Types</h3>
-                <div class="uk-form-controls">
-                    {% for block_type in block_types %}
-                        <label>
-                            <input type="checkbox" name="block_type" class="uk-checkbox"
-                                   value="{{ block_type.id }}" {% if request.GET.block_type == block_type.id|stringformat:"i" %}checked="true"{% endif %}>
-                            {{ block_type.title }}
-                        </label>
-                    {% endfor %}
-                </div>
-
-                <h3>Inverter</h3>
-                <div class="uk-form-controls">
-                    <label>
-                        <input type="checkbox" name="inverter" value="1" class="uk-checkbox"
-                               {% if request.GET.inverter == '1' %}checked="checked"{% endif %}>
-                        Inverter?
-                    </label>
-                </div>
-
+                {{ filter_form }}
                 <button class="uk-button uk-button-default" type="submit"><span uk-icon="icon: search"></span> Search</button>
             </form>
         </div>
