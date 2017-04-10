@@ -11,6 +11,7 @@ class Conditioner(models.Model):
     brand = models.ForeignKey('Brand', related_name='conditioner', verbose_name=u'Бренд', to_field='title')
     type = models.ForeignKey('Type', related_name='conditioner', verbose_name=u'Тип')
     block_type = models.ForeignKey('BlockType', related_name='conditioner', verbose_name=u'Тип внутреннего блока')
+    image = models.ImageField(upload_to='conditioners', blank=True, verbose_name=u'Изображение')
     date_added = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата добавления')
 
     class Meta:
