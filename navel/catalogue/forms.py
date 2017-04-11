@@ -24,3 +24,9 @@ class CatalogueFilterForm(forms.Form):
                 del cleaned_data[k]
 
         return cleaned_data
+
+
+class ConditionerAdminForm(forms.ModelForm):
+    class Meta:
+        model = Conditioner
+        exclude = ()

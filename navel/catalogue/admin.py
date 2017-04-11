@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
+from catalogue.forms import ConditionerAdminForm
 from .models import Conditioner, Brand, Type, BlockType
 
 
@@ -11,6 +12,7 @@ class AdminConditioner(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ('title', 'brand', 'type', 'block_type',)
     list_filter = ('brand', 'type', 'block_type',)
+    form = ConditionerAdminForm
 
 admin.site.register(Conditioner, AdminConditioner)
 

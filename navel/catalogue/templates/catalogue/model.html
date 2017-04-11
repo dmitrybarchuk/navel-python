@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.min.css" />
+<div class="uk-card uk-card-primary uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+    <div class="uk-card-media-left uk-cover-container">
+        <img src="{{ conditioner.image.url }}" alt="{{ conditioner.title }}">
+    </div>
+    <div>
+        <div class="uk-card-body">
+            <h3>{{ conditioner.title }}</h3>
+            <p>Type: {{ conditioner.type }}</p>
+            <p>Block type: {{ conditioner.block_type }}</p>
+            <p>Inverter: {{ conditioner.inverter }}</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/js/uikit-icons.min.js"></script>
