@@ -12,9 +12,12 @@
         </div>
         <div class="uk-width-3-4">
 
-        <div>
-            Your choice:
-        </div>
+        {% if filter_form.data %}
+            <div>
+                Your choice:
+            {{ filter_form.as_selected|safe }}
+            </div>
+        {% endif %}
             <h2>List of Conditioners</h2>
             <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
                 {% for conditioner in conditioners %}

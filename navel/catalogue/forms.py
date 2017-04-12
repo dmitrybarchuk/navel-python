@@ -25,6 +25,19 @@ class CatalogueFilterForm(forms.Form):
 
         return cleaned_data
 
+    def as_selected(self):
+        # "Returns this form rendered as HTML <p>s."
+        output = ''
+        for name, field in self.fields.items():
+            bf = self[name]
+            if bf.data:
+                output += '%s ' % bf.label
+        for key in self.data:
+            # get values of each key
+            values = self.data.getlist(key)
+            # todo: parse it, get title of each value
+        return output
+
 
 class ConditionerAdminForm(forms.ModelForm):
     class Meta:
