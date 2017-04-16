@@ -1,50 +1,27 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.min.css" />
-<div class="uk-container">
-    <div uk-grid>
+{% load main_menu %}
 
-        <div class="uk-width-1-4">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.min.css" />
 
-            <h2>Filters</h2>
-            <form method="get" class="uk-form-stacked" action="/catalogue/">
-                {{ filter_form }}<br>
-                <button class="uk-button uk-button-default" type="submit"><span uk-icon="icon: search"></span> Search</button>
-            </form>
-        </div>
-        <div class="uk-width-3-4">
+</head>
+<body>
+{% main_menu %}
 
-        {% if filter_form.data %}
-            <div>
-                Your choice:
-            {{ filter_form.as_selected|safe }}
-            </div>
-        {% endif %}
-            <h2>List of Conditioners</h2>
-            <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
-                {% for conditioner in conditioners %}
-                    <div>
-                        <div class="uk-card uk-card-primary ul-light">
-                            <div class="uk-card-media-top">
-                                {% if conditioner.image %}<img src="{{ conditioner.image.url }}" alt="{{ conditioner.title }}" class="">{% endif %}
-                            </div>
-                            <div class="uk-card-body">
-                                <a href="{% url 'catalogue:model' conditioner.brand_id conditioner.slug %}">
-                                    <h3 class="uk-card-title">{{ conditioner.title|truncatechars:15 }}</h3>
-                                </a>
-                                <p>
-                                    <a href="{% url 'catalogue:brand' conditioner.brand_id %}">Brand: {{ conditioner.brand }}</a>
-                                </p>
-                                <p>Type: {{ conditioner.type }}</p>
-                                <p>Block type: {{ conditioner.block_type }}</p>
-                                <p>Inverter: {{ conditioner.inverter }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+{% block content %}
+{% endblock %}
+{% block model %}
 
+{% endblock %}
+{% block footer %}
+{% include 'catalogue/footer.html' %}
+{% endblock %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/js/uikit-icons.min.js"></script>
+
+</body>
+</html>

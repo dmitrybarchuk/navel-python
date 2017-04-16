@@ -1,0 +1,8 @@
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li><a href="">Главная</a></li>
+            <li{% if active == 'catalogue' %} class="uk-active"{% endif %}><a href="{% url 'catalogue:index' %}">Каталог</a></li>
+        </ul>
+    </div>
+</nav>

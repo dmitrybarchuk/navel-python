@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
 from catalogue.forms import CatalogueFilterForm
@@ -24,7 +23,7 @@ def index(request, brand_title=None):
         'conditioners': conditioners,
         'filter_form': filter_form,
     }
-    return render(request, 'catalogue/index.html', context)
+    return render(request, 'catalogue/catalogue.html', context)
 
 
 def brand(request, brand_id):

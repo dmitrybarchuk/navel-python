@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalogue.apps.CatalogueConfig',
-    'easy_thumbnails',
+    'sorl.thumbnail',
 ]
+
+THUMBNAIL_DEBUG = True
 
 
 MIDDLEWARE = [
